@@ -1,6 +1,6 @@
 {
-  "name": "deobf",
-  "version": "1.0.0",
+  "name": "@porotkin/deobf",
+  "version": "0.0.1",
   "main": "index.js",
   "type": "module",
   "scripts": {
