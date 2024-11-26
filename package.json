@@ -1,6 +1,6 @@
 {
   "name": "@porotkin/deobf",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Deobfuscate production stacktraces using multiple source maps from chunks",
   "main": "index.js",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "test": "node index.js dist/production/static"
   },
   "bin": {
-    "deobf": "index.js"
+    "@porotkin/deobf": "index.js"
   },
   "dependencies": {
     "clipboardy": "^2.1.0",
