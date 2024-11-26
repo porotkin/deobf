@@ -1,8 +1,14 @@
 {
   "name": "@porotkin/deobf",
   "version": "0.0.1",
-  "main": "index.js",
+  "description": "Deobfuscate production stacktraces using multiple source maps from chunks",
   "type": "module",
+  "license" : "MIT",
+  "homepage": "https://github.com/porotkin/deobf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/porotkin/deobf.git"
+  },
   "scripts": {
     "test": "node index.js dist/production/static"
   },
