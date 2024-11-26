@@ -50,7 +50,7 @@ const main = async (sourceMapsDirectory) => {
     }
 
     const unminifiedStackTrace = await unminifyStackTrace(
-        path.resolve(__dirname, sourceMapsDirectory)
+        sourceMapsDirectory
     )
 
     console.log(unminifiedStackTrace)
