@@ -1,12 +1,9 @@
-import fs from 'fs'
-import path, {dirname} from 'path'
-import {SourceMapConsumer} from "source-map"
-import clipboard from 'clipboardy'
-
-import {fileURLToPath} from 'url'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+#!/usr/bin/env node
+'use strict';
+const fs = require('fs')
+const path = require('path')
+const clipboard = require('clipboardy');
+const {SourceMapConsumer} = require('source-map');
 
 const readFileAsync = (filePath) => {
     return new Promise((resolve, reject) => {
@@ -65,7 +62,6 @@ const main = async (sourceMapsDirectory) => {
         path.resolve(__dirname, sourceMapsDirectory)
     )
 
-    console.log('Unminified Stack Trace:\n')
     console.log(unminifiedStackTrace)
 }
 
