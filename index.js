@@ -1,28 +1,19 @@
 #!/usr/bin/env node
 'use strict';
-const fs = require('fs')
+const fs = require('fs/promises')
 const path = require('path')
 const clipboard = require('clipboardy');
 const {SourceMapConsumer} = require('source-map');
 
-const readFileAsync = (filePath) => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filePath, 'utf8', (err, data) => {
-            if (err) reject(err)
-            else resolve(data)
-        })
-    })
-}
-
 const unminifyStackTrace = async (sourceMapsDirectory) => {
     const stackTraceContent = await clipboard.read()
-    const files = fs.readdirSync(sourceMapsDirectory)
+    const files = await fs.readdir(sourceMapsDirectory)
     const sourceMaps = {}
 
     // Load all source maps
     for (const file of files) {
         if (file.endsWith('.map')) {
-            const mapContent = await readFileAsync(path.join(sourceMapsDirectory, file))
+            const mapContent = await fs.readFile(path.join(sourceMapsDirectory, file), 'utf-8');
             sourceMaps[file.replace('.map', '')] = await new SourceMapConsumer(JSON.parse(mapContent))
         }
     }
@@ -66,6 +57,6 @@ const main = async (sourceMapsDirectory) => {
 }
 
 // Get input arguments
-const [, , sourceMapsDirectory, stackTraceFilePath] = process.argv
+const [, , sourceMapsDirectory] = process.argv
 
-main(sourceMapsDirectory, stackTraceFilePath).catch(err => console.error('Error during unminification:', err))
+main(sourceMapsDirectory).catch(err => console.error('Error during unminification:', err))
