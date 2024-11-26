@@ -1,6 +1,6 @@
 {
   "name": "@porotkin/deobf",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "Deobfuscate production stacktraces using multiple source maps from chunks",
   "main": "index.js",
   "license": "MIT",

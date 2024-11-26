@@ -20,7 +20,7 @@ const unminifyStackTrace = async (sourceMapsDirectory) => {
 
     // Replace minified positions in stack trace
     const originalStackTrace = stackTraceContent.replace(
-        /(at)*\s*(.*)\s*[(|@](.+\.js):(\d+):(\d+)/g,
+        /[at]?\s*(.*)\s*[(@]+(.+\.js):(\d+):(\d+)\)?/g,
         (match, functionName, filePath, line, column) => {
             const sourceMap = sourceMaps[path.basename(filePath)];
             if (sourceMap) {
@@ -31,7 +31,7 @@ const unminifyStackTrace = async (sourceMapsDirectory) => {
 
                 if (pos.source) {
                     const sourceFunctionName = pos.name || functionName
-                    return `at ${sourceFunctionName} (${pos.source}:${pos.line}:${pos.column})`;
+                    return `${sourceFunctionName} (${pos.source}:${pos.line}:${pos.column})\n`;
                 }
             }
             return match;
